@@ -1,12 +1,12 @@
 package com.example.async;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.async.DeferredResult;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
@@ -14,7 +14,7 @@ public class AsyncService {
 
 	public Person sync() {
 		log.info("service start");
-		sleep(3);
+		sleep(5);
 		Person p = new Person("AAA", 10);
 		log.info("service end");
 		return p;
@@ -23,7 +23,7 @@ public class AsyncService {
 	@Async
 	public void async(DeferredResult<Person> result) {
 		log.info("service start");
-		sleep(3);
+		sleep(5);
 		result.setResult(new Person("AAA", 10));
 		log.info("service end");
 	}
